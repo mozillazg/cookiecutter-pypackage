@@ -46,30 +46,26 @@ clean-test:
 	rm -fr htmlcov/
 
 lint:
-	flake8 {{ cookiecutter.project_slug }} tests
+	flake8 {{ cookiecutter.module_name }} tests
 
 test:
-	python setup.py test
+	py.test --cov {{ cookiecutter.module_name }} tests --cov-report=term-missing
 
 test-all:
 	tox
 
-coverage:
-	coverage run --source {{ cookiecutter.project_slug }} setup.py test
+coverage: test
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
 docs:
-	rm -f docs/{{ cookiecutter.project_slug }}.rst
+	rm -f docs/{{ cookiecutter.module_name }}.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ {{ cookiecutter.project_slug }}
+	sphinx-apidoc -o docs/ {{ cookiecutter.module_name }}
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
-
-servedocs: docs
-	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
 
 release: clean
 	python setup.py sdist upload
