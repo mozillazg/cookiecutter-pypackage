@@ -24,10 +24,10 @@
 
 
 
-{{ cookiecutter.project_short_description}}
+{{ cookiecutter.project_short_description }}
 
 * Free software: MIT license
-* Documentation: https://{{ cookiecutter.project_slug }}.readthedocs.org.
+* Documentation: https://{{ cookiecutter.project_slug }}.readthedocs.org
 * GitHub: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
 * PyPI: https://pypi.python.org/pypi/{{ cookiecutter.project_slug }}
 * Python version: 2.6, 2.7, pypy, 3.3, 3.4, 3.5
